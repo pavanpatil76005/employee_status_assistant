@@ -139,7 +139,8 @@ def check_connections():
         if response.text:
             status["gemini"] = True
 
-    except Exception:
+    except Exception as error:
+        print("GEMINI CHECK ERROR:", repr(error), flush=True)
         status["gemini"] = False
 
     return status
@@ -454,10 +455,7 @@ if user_message:
 
             st.session_state.employee = None
 
-            print(
-                "Application error:",
-                error,
-            )
+            print("CHAT ERROR:", repr(error), flush=True)
 
 
     with st.chat_message(
