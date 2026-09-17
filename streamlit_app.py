@@ -4,13 +4,30 @@ import streamlit as st
 from dotenv import load_dotenv
 from google import genai
 
+# Load local .env when running in VS Code
+load_dotenv(override=False)
+
+# Load Streamlit Cloud secrets when deployed
+SECRET_KEYS = [
+    "GEMINI_API_KEY",
+    "GEMINI_MODEL",
+    "BTP_CLIENT_ID",
+    "BTP_CLIENT_SECRET",
+    "BTP_AUTH_URL",
+    "BTP_DESTINATION_URI",
+    "BTP_DESTINATION_NAME",
+]
+
+for key in SECRET_KEYS:
+    if key in st.secrets:
+        os.environ[key] = str(st.secrets[key])
+
+# Import backend only AFTER secrets are loaded
 from backend.employee_agent import (
     ask_employee_agent,
     get_employee_details,
     get_btp_destination,
 )
-
-load_dotenv(override=True)
 
 # -------------------------------------------------
 # Page settings
