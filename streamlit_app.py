@@ -2,6 +2,7 @@ import os
 import re
 import streamlit as st
 from dotenv import load_dotenv
+from streamlit.errors import StreamlitSecretNotFoundError
 
 # Load local .env when running in VS Code
 load_dotenv(override=False)
@@ -17,9 +18,13 @@ SECRET_KEYS = [
     "BTP_DESTINATION_NAME",
 ]
 
-for key in SECRET_KEYS:
-    if key in st.secrets:
-        os.environ[key] = str(st.secrets[key])
+try:
+    for key in SECRET_KEYS:
+        if key in st.secrets:
+            os.environ[key] = str(st.secrets[key])
+except StreamlitSecretNotFoundError:
+    # Local development can use .env without a Streamlit secrets file.
+    pass
 
 # Import backend only AFTER secrets are loaded
 from backend.employee_agent import (
