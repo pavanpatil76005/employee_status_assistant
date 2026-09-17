@@ -2,7 +2,6 @@ import os
 import re
 import streamlit as st
 from dotenv import load_dotenv
-from google import genai
 
 # Load local .env when running in VS Code
 load_dotenv(override=False)
@@ -118,29 +117,11 @@ def check_connections():
     except Exception:
         status["azure"] = False
 
-    # Gemini
+    # Gemini configuration check
     try:
         api_key = os.getenv("GEMINI_API_KEY")
-
-        model_name = os.getenv(
-            "GEMINI_MODEL",
-            "gemini-3.6-flash",
-        )
-
-        gemini_client = genai.Client(
-            api_key=api_key
-        )
-
-        response = gemini_client.models.generate_content(
-            model=model_name,
-            contents="Reply only with OK",
-        )
-
-        if response.text:
-            status["gemini"] = True
-
-    except Exception as error:
-        print("GEMINI CHECK ERROR:", repr(error), flush=True)
+        status["gemini"] = bool(api_key and api_key.strip())
+    except Exception:
         status["gemini"] = False
 
     return status
