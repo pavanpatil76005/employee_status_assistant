@@ -1,0 +1,101 @@
+employee_id,name,department,role,location,status
+EMP001,Rahul Sharma,Marketing,Marketing Analyst,Chennai,Active
+EMP002,Priya Kumar,Finance,Accountant,Mumbai,Inactive
+EMP003,Neha Verma,Finance,Finance Executive,Hyderabad,Active
+EMP004,Ravi Verma,IT,Tester,Chennai,Active
+EMP005,Pooja Singh,Marketing,Digital Marketing Executive,Pune,On Leave
+EMP006,Priya Patil,HR,Recruiter,Pune,Active
+EMP007,Priya Sharma,Finance,Finance Executive,Bengaluru,Inactive
+EMP008,Kiran Nair,HR,Recruiter,Chennai,On Leave
+EMP009,Rahul Mehta,HR,Recruiter,Pune,Active
+EMP010,Amit Sharma,Finance,Finance Executive,Pune,Active
+EMP011,Arun Reddy,Marketing,Marketing Executive,Mumbai,Inactive
+EMP012,Priya Singh,Sales,Business Development Executive,Hyderabad,On Leave
+EMP013,Neha Nair,IT,Data Analyst,Chennai,Active
+EMP014,Priya Kumar,Sales,Sales Executive,Bengaluru,Active
+EMP015,Kiran Singh,Finance,Financial Analyst,Pune,On Leave
+EMP016,Pooja Singh,IT,Tester,Hyderabad,Inactive
+EMP017,Kiran Reddy,IT,Data Analyst,Mumbai,Active
+EMP018,Pooja Nair,Finance,Financial Analyst,Hyderabad,Active
+EMP019,Amit Singh,IT,Data Analyst,Pune,Active
+EMP020,Kiran Joshi,IT,Tester,Hyderabad,Active
+EMP021,Rahul Kumar,Marketing,Digital Marketing Executive,Chennai,Active
+EMP022,Amit Sharma,Sales,Business Development Executive,Mumbai,Active
+EMP023,Sneha Patil,Finance,Finance Executive,Hyderabad,Active
+EMP024,Ravi Mehta,Finance,Financial Analyst,Mumbai,Active
+EMP025,Amit Patil,IT,Software Developer,Pune,Active
+EMP026,Arun Sharma,Marketing,Marketing Executive,Pune,Active
+EMP027,Sneha Nair,Sales,Business Development Executive,Pune,Active
+EMP028,Sneha Nair,Finance,Accountant,Pune,Active
+EMP029,Arun Verma,HR,HR Manager,Mumbai,On Leave
+EMP030,Sneha Joshi,HR,HR Manager,Mumbai,On Leave
+EMP031,Neha Singh,Sales,Sales Manager,Bengaluru,Inactive
+EMP032,Ravi Kumar,Finance,Finance Executive,Pune,Active
+EMP033,Priya Singh,HR,HR Executive,Bengaluru,On Leave
+EMP034,Arun Singh,Finance,Accountant,Mumbai,Inactive
+EMP035,Rahul Kumar,Marketing,Digital Marketing Executive,Mumbai,Active
+EMP036,Kiran Joshi,IT,Tester,Pune,Inactive
+EMP037,Priya Sharma,Marketing,Digital Marketing Executive,Pune,Active
+EMP038,Kiran Joshi,Marketing,Marketing Analyst,Hyderabad,Inactive
+EMP039,Pooja Reddy,IT,Software Developer,Hyderabad,On Leave
+EMP040,Rahul Reddy,Finance,Financial Analyst,Hyderabad,Inactive
+EMP041,Arun Kumar,IT,System Engineer,Chennai,Active
+EMP042,Rahul Patil,Finance,Finance Executive,Pune,Active
+EMP043,Arun Singh,IT,Tester,Pune,Active
+EMP044,Anjali Rao,HR,HR Executive,Chennai,Active
+EMP045,Sneha Kumar,Sales,Sales Manager,Bengaluru,On Leave
+EMP046,Arun Mehta,HR,HR Manager,Pune,Inactive
+EMP047,Kiran Kumar,Sales,Business Development Executive,Chennai,On Leave
+EMP048,Kiran Rao,Sales,Sales Manager,Pune,Active
+EMP049,Arun Mehta,Finance,Accountant,Pune,Active
+EMP050,Amit Joshi,IT,Software Developer,Pune,Active
+EMP051,Neha Rao,HR,HR Executive,Bengaluru,Active
+EMP052,Ravi Kumar,HR,HR Manager,Bengaluru,Active
+EMP053,Rahul Singh,Finance,Finance Executive,Bengaluru,Active
+EMP054,Kiran Joshi,Finance,Finance Executive,Bengaluru,Active
+EMP055,Priya Kumar,Finance,Financial Analyst,Hyderabad,Active
+EMP056,Priya Rao,Marketing,Marketing Executive,Hyderabad,Inactive
+EMP057,Kiran Sharma,HR,Recruiter,Pune,On Leave
+EMP058,Anjali Rao,Sales,Business Development Executive,Bengaluru,Active
+EMP059,Amit Nair,Sales,Business Development Executive,Pune,Active
+EMP060,Sneha Singh,Sales,Sales Executive,Hyderabad,Active
+EMP061,Kiran Verma,Finance,Financial Analyst,Pune,On Leave
+EMP062,Rahul Mehta,Marketing,Marketing Analyst,Hyderabad,Inactive
+EMP063,Rahul Joshi,IT,Data Analyst,Bengaluru,Active
+EMP064,Neha Singh,Sales,Sales Executive,Mumbai,On Leave
+EMP065,Amit Nair,Sales,Sales Executive,Hyderabad,Active
+EMP066,Sneha Sharma,IT,Tester,Bengaluru,Active
+EMP067,Pooja Kumar,IT,Tester,Chennai,Inactive
+EMP068,Ravi Patil,Marketing,Marketing Analyst,Hyderabad,Active
+EMP069,Anjali Patil,HR,HR Manager,Mumbai,Active
+EMP070,Priya Verma,Finance,Accountant,Pune,On Leave
+EMP071,Kiran Verma,IT,Data Analyst,Bengaluru,Active
+EMP072,Priya Sharma,Sales,Sales Executive,Chennai,Inactive
+EMP073,Sneha Reddy,HR,Recruiter,Mumbai,Active
+EMP074,Neha Reddy,IT,Data Analyst,Bengaluru,Active
+EMP075,Priya Kumar,Finance,Finance Executive,Hyderabad,Inactive
+EMP076,Pooja Nair,Sales,Sales Manager,Bengaluru,Active
+EMP077,Pooja Verma,HR,HR Manager,Pune,On Leave
+EMP078,Amit Joshi,HR,Recruiter,Hyderabad,Active
+EMP079,Priya Sharma,Finance,Financial Analyst,Pune,Inactive
+EMP080,Arun Joshi,IT,Data Analyst,Mumbai,Inactive
+EMP081,Anjali Reddy,Sales,Sales Manager,Chennai,On Leave
+EMP082,Anjali Rao,Finance,Financial Analyst,Chennai,Active
+EMP083,Rahul Kumar,Marketing,Marketing Analyst,Bengaluru,Active
+EMP084,Ravi Sharma,Sales,Sales Executive,Mumbai,Active
+EMP085,Arun Sharma,Finance,Accountant,Pune,Active
+EMP086,Kiran Nair,Marketing,Marketing Executive,Pune,Active
+EMP087,Ravi Singh,Marketing,Marketing Analyst,Mumbai,Active
+EMP088,Ravi Rao,Finance,Finance Executive,Hyderabad,On Leave
+EMP089,Priya Nair,HR,HR Manager,Mumbai,On Leave
+EMP090,Priya Rao,Finance,Accountant,Hyderabad,On Leave
+EMP091,Anjali Joshi,Finance,Finance Executive,Mumbai,Active
+EMP092,Priya Verma,HR,Recruiter,Hyderabad,Inactive
+EMP093,Priya Joshi,Finance,Financial Analyst,Bengaluru,Inactive
+EMP094,Pooja Nair,HR,HR Manager,Hyderabad,Active
+EMP095,Rahul Kumar,Marketing,Digital Marketing Executive,Bengaluru,Active
+EMP096,Pooja Nair,Sales,Sales Manager,Pune,Inactive
+EMP097,Sneha Verma,Finance,Finance Executive,Mumbai,Active
+EMP098,Ravi Sharma,Finance,Finance Executive,Pune,Active
+EMP099,Arun Singh,Sales,Sales Executive,Mumbai,Inactive
+EMP100,Kiran Kumar,HR,HR Manager,Chennai,On Leave

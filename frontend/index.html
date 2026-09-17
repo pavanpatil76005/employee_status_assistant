@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information & Status Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Employee Information & Status Assistant</h1>
+
+        <p class="subtitle">
+            Search and filter employee information
+        </p>
+
+        <div class="search-section">
+
+            <input
+                type="text"
+                id="employeeId"
+                placeholder="Enter Employee ID (Example: EMP001)"
+            >
+
+            <button onclick="searchEmployee()">
+                Search Employee
+            </button>
+
+        </div>
+
+        <h2>Filter Employees</h2>
+
+        <div class="filter-section">
+
+            <select id="department">
+                <option value="">All Departments</option>
+                <option value="IT">IT</option>
+                <option value="HR">HR</option>
+                <option value="Finance">Finance</option>
+                <option value="Sales">Sales</option>
+                <option value="Marketing">Marketing</option>
+            </select>
+
+            <select id="location">
+                <option value="">All Locations</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Pune">Pune</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Chennai">Chennai</option>
+            </select>
+
+            <select id="status">
+                <option value="">All Status</option>
+                <option value="Active">Active</option>
+                <option value="On Leave">On Leave</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+
+            <button onclick="filterEmployees()">
+                Apply Filter
+            </button>
+
+            <button onclick="loadAllEmployees()">
+                Show All
+            </button>
+
+        </div>
+
+        <div id="message"></div>
+
+        <div id="employeeResult"></div>
+
+        <div id="employeeList"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
