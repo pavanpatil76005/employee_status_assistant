@@ -1,4 +1,5 @@
 import os
+import re
 import requests
 from dotenv import load_dotenv
 from google import genai
@@ -118,11 +119,56 @@ def get_employee_details(employee_id):
         }
 
 
-def ask_employee_agent(question, employee_id):
-    employee = get_employee_details(employee_id)
+def ask_employee_agent(question, employee_id=None):
+    # Find all employee IDs in the user's question
+    employee_ids = re.findall(
+        r"\bEMP\d+\b",
+        question.upper()
+    )
 
-    if "error" in employee:
-        return employee["error"]
+    # If no ID was found in the question,
+    # use the employee_id passed by Streamlit
+    if not employee_ids and employee_id:
+        employee_ids = [employee_id.upper()]
+
+    # Remove duplicates while keeping order
+    employee_ids = list(dict.fromkeys(employee_ids))
+
+    if not employee_ids:
+        return "Please provide an employee ID such as EMP001."
+
+    # Limit one request to 10 employees
+    employee_ids = employee_ids[:10]
+
+    employees = []
+    errors = []
+
+    for emp_id in employee_ids:
+        employee = get_employee_details(emp_id)
+
+        if "error" in employee:
+            errors.append(employee["error"])
+        else:
+            employees.append(employee)
+
+    if not employees:
+        return "\n".join(errors)
+
+    employee_information = []
+
+    for employee in employees:
+        employee_information.append(
+            f"""
+Employee ID: {employee['employee_id']}
+Name: {employee['name']}
+Department: {employee['department']}
+Role: {employee['role']}
+Location: {employee['location']}
+Status: {employee['status']}
+"""
+        )
+
+    employee_data = "\n".join(employee_information)
 
     prompt = f"""
 You are an Employee Status Assistant.
@@ -131,14 +177,13 @@ User question:
 {question}
 
 Employee information:
-Employee ID: {employee['employee_id']}
-Name: {employee['name']}
-Department: {employee['department']}
-Role: {employee['role']}
-Location: {employee['location']}
-Status: {employee['status']}
+{employee_data}
 
-Answer the user's question using only this employee information.
+Answer the user's question using only the employee information above.
+
+If multiple employees are requested, clearly give the details
+for each employee separately.
+
 Keep the answer simple and professional.
 """
 
