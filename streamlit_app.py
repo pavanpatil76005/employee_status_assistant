@@ -199,10 +199,6 @@ st.markdown(
         🤖 Employee Status AI Assistant
     </div>
 
-    <div class="subtitle">
-        AI-powered employee information assistant
-        using Gemini, SAP BTP and Microsoft Azure
-    </div>
     """,
     unsafe_allow_html=True,
 )
@@ -214,32 +210,32 @@ st.markdown(
 
 connections = check_connections()
 
-st.subheader("System Connection Status")
+# st.subheader("System Connection Status")
 
-col1, col2, col3 = st.columns(3)
+# col1, col2, col3 = st.columns(3)
 
-with col1:
+# with col1:
 
-    if connections["btp"]:
-        st.success("✅ SAP BTP Connected")
-    else:
-        st.error("❌ SAP BTP Connection Failed")
-
-
-with col2:
-
-    if connections["azure"]:
-        st.success("✅ Microsoft Azure Connected")
-    else:
-        st.error("❌ Azure Connection Failed")
+#     if connections["btp"]:
+#         st.success("✅ SAP BTP Connected")
+#     else:
+#         st.error("❌ SAP BTP Connection Failed")
 
 
-with col3:
+# with col2:
 
-    if connections["gemini"]:
-        st.success("✅ Gemini AI Connected")
-    else:
-        st.error("❌ Gemini AI Connection Failed")
+#     if connections["azure"]:
+#         st.success("✅ Microsoft Azure Connected")
+#     else:
+#         st.error("❌ Azure Connection Failed")
+
+
+# with col3:
+
+#     if connections["gemini"]:
+#         st.success("✅ Gemini AI Connected")
+#     else:
+#         st.error("❌ Gemini AI Connection Failed")
 
 
 st.divider()
