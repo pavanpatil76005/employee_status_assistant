@@ -51,6 +51,10 @@ st.markdown(
     """
     <style>
 
+    [data-testid="stToolbar"] {
+        display: none !important;
+    }
+
     .main-title {
         font-size: 38px;
         font-weight: 700;
@@ -356,39 +360,66 @@ if user_message:
         st.write(user_message)
 
 
-    # A single employee lookup can also show an information card.
-    # All questions, including searches without IDs, go to the agent.
-    employee_ids = list(dict.fromkeys(re.findall(
-        r"\bEMP\d+\b",
-        user_message.upper(),
-    )))
-
-    st.session_state.employee = None
+    # Detect employee IDs if present
+    employee_ids = re.findall(
+        r"\bEMP\d{3}\b",
+        user_message.upper()
+    )
 
     try:
-        with st.spinner("Preparing your answer..."):
-            answer = ask_employee_agent(user_message)
 
-        if len(employee_ids) == 1 and re.fullmatch(
-            r"EMP\d{3}", employee_ids[0]
-        ):
-            employee = get_employee_details(employee_ids[0])
+        # If exactly one employee ID is present,
+        # show that employee in the information card
+        if len(employee_ids) == 1:
+
+            employee_id = employee_ids[0]
+
+            with st.spinner(
+                "Retrieving employee data through SAP BTP..."
+            ):
+
+                employee = get_employee_details(
+                    employee_id
+                )
 
             if (
                 isinstance(employee, dict)
-                and employee
                 and "error" not in employee
             ):
                 st.session_state.employee = employee
+            else:
+                st.session_state.employee = None
+
+        # For multi-employee or analytics questions,
+        # do not show one employee card
+        else:
+            st.session_state.employee = None
+
+        # Let the upgraded employee agent handle
+        # single employee, multiple employees,
+        # searches, counts and analytics
+        with st.spinner(
+            "Processing your request..."
+        ):
+
+            answer = ask_employee_agent(
+                user_message
+            )
 
     except Exception as error:
+
         answer = (
             "⚠️ Something went wrong while processing "
-            "the request. Please check the system "
-            "connections and try again."
+            "the request. Please try again."
         )
+
         st.session_state.employee = None
-        print("CHAT ERROR:", repr(error), flush=True)
+
+        print(
+            "CHAT ERROR:",
+            repr(error),
+            flush=True
+        )
 
 
     with st.chat_message(
