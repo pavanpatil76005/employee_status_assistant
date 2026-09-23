@@ -335,7 +335,7 @@ for message in st.session_state.messages:
 
 
 user_message = st.chat_input(
-    "Ask something like: What is the status of EMP001?"
+    "Ask about EMP001, compare employees, or ask how many Sales employees are Active"
 )
 
 
@@ -356,88 +356,39 @@ if user_message:
         st.write(user_message)
 
 
-    # Extract employee ID
-    match = re.search(
+    # A single employee lookup can also show an information card.
+    # All questions, including searches without IDs, go to the agent.
+    employee_ids = list(dict.fromkeys(re.findall(
         r"\bEMP\d+\b",
-        user_message,
-        re.IGNORECASE,
-    )
+        user_message.upper(),
+    )))
 
+    st.session_state.employee = None
 
-    if not match:
+    try:
+        with st.spinner("Preparing your answer..."):
+            answer = ask_employee_agent(user_message)
 
-        answer = (
-            "Please provide an employee ID. "
-            "For example: **EMP001**."
-        )
+        if len(employee_ids) == 1 and re.fullmatch(
+            r"EMP\d{3}", employee_ids[0]
+        ):
+            employee = get_employee_details(employee_ids[0])
 
-        st.session_state.employee = None
-
-
-    else:
-
-        employee_id = (
-            match.group(0).upper()
-        )
-
-        try:
-
-            with st.spinner(
-                "Retrieving employee data through SAP BTP..."
-            ):
-
-                employee = get_employee_details(
-                    employee_id
-                )
-
-
-            # API returned error
             if (
-                not employee
-                or "error" in employee
+                isinstance(employee, dict)
+                and employee
+                and "error" not in employee
             ):
-
-                error_message = (
-                    employee.get(
-                        "error",
-                        "Employee information could not be retrieved."
-                    )
-                    if isinstance(employee, dict)
-                    else "Employee information could not be retrieved."
-                )
-
-                answer = (
-                    f"⚠️ {error_message}"
-                )
-
-                st.session_state.employee = None
-
-
-            else:
-
                 st.session_state.employee = employee
 
-                with st.spinner(
-                    "Gemini is preparing the answer..."
-                ):
-
-                    answer = ask_employee_agent(
-                        user_message,
-                        employee_id,
-                    )
-
-
-        except Exception as error:
-
-            answer = (
-                "⚠️ Something went wrong while processing "
-                "the request. Please check the system "
-                "connections and try again."
-            )
-
-            st.session_state.employee = None
-
-            print("CHAT ERROR:", repr(error), flush=True)
+    except Exception as error:
+        answer = (
+            "⚠️ Something went wrong while processing "
+            "the request. Please check the system "
+            "connections and try again."
+        )
+        st.session_state.employee = None
+        print("CHAT ERROR:", repr(error), flush=True)
 
 
     with st.chat_message(
