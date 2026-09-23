@@ -73,19 +73,45 @@ def get_btp_destination():
 
 def get_employee_details(employee_id):
     """
-    Get employee information using the URL stored
-    in SAP BTP Destination Service.
+    Get employee information using SAP BTP Destination Service.
     """
 
+    # Clean employee ID
+    employee_id = str(employee_id).strip().upper()
+
+    # Validate employee ID format
+    if not re.fullmatch(r"EMP\d{3}", employee_id):
+        return {
+            "error": (
+                "Invalid employee ID. "
+                "Please use a format like EMP001."
+            )
+        }
+
     try:
+        # Get Azure API destination from SAP BTP
         destination = get_btp_destination()
 
-        destination_config = destination["destinationConfiguration"]
+        destination_config = destination.get(
+            "destinationConfiguration"
+        )
 
-        base_url = destination_config["URL"].rstrip("/")
+        if not destination_config:
+            return {
+                "error": "SAP BTP destination configuration was not found."
+            }
+
+        base_url = destination_config.get("URL")
+
+        if not base_url:
+            return {
+                "error": "Azure API URL was not found in SAP BTP."
+            }
+
+        base_url = base_url.rstrip("/")
 
         employee_url = (
-            f"{base_url}/employees/{employee_id.upper()}"
+            f"{base_url}/employees/{employee_id}"
         )
 
         response = requests.get(
@@ -93,29 +119,62 @@ def get_employee_details(employee_id):
             timeout=15
         )
 
+        # Employee found
         if response.status_code == 200:
             return response.json()
 
+        # Employee does not exist
         if response.status_code == 404:
             return {
-                "error": f"Employee {employee_id} was not found."
+                "error": (
+                    f"Employee {employee_id} was not found. "
+                    "Please check the employee ID and try again."
+                )
+            }
+
+        # Azure/server error
+        if response.status_code >= 500:
+            return {
+                "error": (
+                    "The Azure employee service is temporarily unavailable. "
+                    "Please try again later."
+                )
             }
 
         return {
             "error": (
                 f"Employee API returned status "
-                f"{response.status_code}"
+                f"{response.status_code}."
+            )
+        }
+
+    except requests.Timeout:
+        return {
+            "error": (
+                "The employee API request timed out. "
+                "Please try again."
+            )
+        }
+
+    except requests.ConnectionError:
+        return {
+            "error": (
+                "Could not connect to the employee API."
             )
         }
 
     except requests.RequestException as error:
         return {
-            "error": f"Connection error: {str(error)}"
+            "error": (
+                f"Employee API connection error: {str(error)}"
+            )
         }
 
     except Exception as error:
         return {
-            "error": f"Agent error: {str(error)}"
+            "error": (
+                f"Employee agent error: {str(error)}"
+            )
         }
 
 
